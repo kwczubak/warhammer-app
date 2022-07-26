@@ -5,4 +5,6 @@ edition = "2021"
 
 [dependencies]
 serde_json = "1.0"
+serde-xml-rs = "*"
+serde_derive = "*"
 serde = { version="1.0", features=["derive"] }
