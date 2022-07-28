@@ -13,7 +13,9 @@ fn main() -> std::io::Result<()> {
 
     let roster : ros_parser::Roster = from_reader(buf).unwrap();
 
-    let profile = ParseProfile(roster.forces.forces[0].selections.selections[4].selections.as_ref().unwrap().selections[1].profiles.as_ref().unwrap().profiles[0].characteristics);
+    // yeah so you can't do this, cause as compiler said characteristics doesn't impl copy.
+    // so either you can add #[derive(Copy)] to characteristics or do what i'll commit. 
+    let profile = ParseProfile(&roster.forces.forces[0].selections.selections[4].selections.as_ref().unwrap().selections[1].profiles.as_ref().unwrap().profiles[0].characteristics);
 
     // println!("{:#?}", doc);
     Ok(())

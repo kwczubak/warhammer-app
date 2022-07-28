@@ -88,7 +88,7 @@ pub struct Army {
     pub cp: u8,
 }
 
-pub fn ParseProfile(characteristics: ros_parser::Characteristics) -> Result<Profile, String> {
+pub fn ParseProfile(characteristics: &ros_parser::Characteristics) -> Result<Profile, String> {
     let iter = characteristics.characteristics.iter();
     let mut profile = Profile {
         movement: 0,
