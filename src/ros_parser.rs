@@ -87,13 +87,13 @@ pub struct Profile {
     pub characteristics: Characteristics,
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Characteristics {
     #[serde(rename = "$value")]
     pub characteristics: Vec<Characteristic>
 }
 
-#[derive(Debug, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Characteristic {
     pub name: String,
