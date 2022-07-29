@@ -1,4 +1,4 @@
-use crate::ros_parser::{self, Characteristic};
+use crate::ros_parser::{self, Characteristic, Selection};
 use regex::Regex;
 
 #[derive(Debug)]
@@ -30,7 +30,7 @@ pub struct ProfileValue {
 }
 
 impl ProfileValue {
-    pub fn new(s: &str) -> Self {
+    pub fn from_str(s: &str) -> Self {
         let flat_value : Option<u8>;
         let mut dice_value : Option<DiceRoll> = None;
         let dice_re = Regex::new(r"(\d?)D?(\d?)\+?(\d?)").unwrap();
@@ -61,7 +61,7 @@ impl ProfileValue {
 }
 
 #[derive(Debug)]
-pub struct Profile {
+pub struct ModelProfile {
     pub movement: u8,
     pub weapon_skill: u8,
     pub ballistic_skill: u8,
@@ -100,7 +100,7 @@ pub struct Weapon {
 #[derive(Debug)]
 pub struct Model {
     pub name: String,
-    pub profiles: Vec<Profile>,
+    pub profiles: Vec<ModelProfile>,
     pub weapons: Vec<Weapon>,
     pub abilities: Vec<Ability>,
     pub number: u8,
@@ -128,9 +128,9 @@ pub struct Army {
     pub cp: u8,
 }
 
-pub fn parse_unit_profile(characteristics: &ros_parser::Characteristics) -> Result<Profile, String> {
+pub fn parse_unit_profile(characteristics: &ros_parser::Characteristics) -> Result<ModelProfile, String> {
     let iter = characteristics.characteristics.iter();
-    let mut profile = Profile {
+    let mut profile = ModelProfile {
         movement: 0,
         weapon_skill: 0,
         ballistic_skill: 0,
@@ -153,7 +153,7 @@ pub fn parse_unit_profile(characteristics: &ros_parser::Characteristics) -> Resu
             "S" => profile.strength = characteristic.value.as_ref().unwrap().parse().unwrap(),
             "T" => profile.toughness = characteristic.value.as_ref().unwrap().parse().unwrap(),
             "W" => profile.wounds = characteristic.value.as_ref().unwrap().parse().unwrap(), // Can be N/A
-            "A" => profile.attacks = ProfileValue::new(characteristic.value.as_ref().unwrap()),
+            "A" => profile.attacks = ProfileValue::from_str(characteristic.value.as_ref().unwrap()),
             "Ld" => profile.leadership = characteristic.value.as_ref().unwrap().parse().unwrap(),
             "Save" => profile.save = up_re.captures(characteristic.value.as_ref().unwrap()).unwrap()[1].parse().unwrap(),
             _ => return Err("Unknown characteristicfor unit: ".to_owned() + characteristic.name.as_str())
@@ -163,8 +163,8 @@ pub fn parse_unit_profile(characteristics: &ros_parser::Characteristics) -> Resu
     Ok(profile)
 }
 
-pub fn parse_weapon_profile(characteristics: &ros_parser::Characteristics) -> Result<WeaponProfile, String> {
-    let iter = characteristics.characteristics.iter();
+pub fn parse_weapon_profile(weapon_characteristics: &ros_parser::Characteristics) -> Result<WeaponProfile, String> {
+    let iter = weapon_characteristics.characteristics.iter();
     let mut weapon = WeaponProfile {
         abilities: None,
         range: None,
@@ -198,15 +198,15 @@ pub fn parse_weapon_profile(characteristics: &ros_parser::Characteristics) -> Re
                 }
 
                 match *(sv.get(0).unwrap()) {
-                    "Assault" | "Heavy" | "Grenade" | "Pistol" => weapon.attacks = Some(ProfileValue::new(sv.get(1).unwrap())),
-                    "Rapid" => weapon.attacks = Some(ProfileValue::new(sv.get(2).unwrap())),
+                    "Assault" | "Heavy" | "Grenade" | "Pistol" => weapon.attacks = Some(ProfileValue::from_str(sv.get(1).unwrap())),
+                    "Rapid" => weapon.attacks = Some(ProfileValue::from_str(sv.get(2).unwrap())),
                     "Meele" => weapon.attacks = None,
                     &_ => return Err("Unsupported weapon type".to_owned()),
                 }
             },
             "S" => weapon.strength = characteristic.value.as_ref().unwrap().parse().unwrap(),
             "AP" => weapon.armour_penetration = characteristic.value.as_ref().unwrap().parse().unwrap(),
-            "D" => weapon.damage = ProfileValue::new(characteristic.value.as_ref().unwrap()),
+            "D" => weapon.damage = ProfileValue::from_str(characteristic.value.as_ref().unwrap()),
             "Abilities" => if characteristic.value.as_ref().unwrap() != "-" {
                 match weapon.abilities {
                     Some(ref mut f) => f.push(Ability{value: characteristic.value.as_ref().unwrap().to_string()}),
@@ -218,6 +218,12 @@ pub fn parse_weapon_profile(characteristics: &ros_parser::Characteristics) -> Re
     }
 
     Ok(weapon)
+}
+
+pub fn parse_weapon(weapon_selection: Selection) -> Weapon {
+    let profile = parse_weapon_profile(&weapon_selection.profiles.as_ref().unwrap().profiles[0].characteristics);
+
+    Weapon { name: weapon_selection.name, profile: profile.unwrap(), number: weapon_selection.number }
 }
 
 // pub fn ParseRoster(roster: Roster) ->` Army {

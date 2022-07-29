@@ -59,7 +59,7 @@ pub struct Selection {
     pub id: String,
     pub name: String,
     pub entry_id: String,
-    pub number: u32,
+    pub number: u8,
     pub r#type: String,
     pub entry_group_id: Option<String>,
     pub publication_id: Option<String>,
