@@ -9,3 +9,4 @@ serde-xml-rs = "*"
 serde_derive = "*"
 serde = { version="1.0", features=["derive"] }
 regex = "1"
+lazy_static = "1.4.0"
