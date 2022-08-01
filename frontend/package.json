@@ -1,0 +1,15 @@
+{
+  "name": "warhammer-helper",
+  "version": "1.0.0",
+  "description": "Helper for warhammer games",
+  "main": "index.html",
+  "dependencies": {
+    "bootstrap": "^5.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Warhammer Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand">Warhammer</a>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <ul class="list-group list-group-flush" id="list-phases" role="tablist">
+                    <a class="list-group-item list-group-item-action active" id="list-comamnd-list" data-bs-toggle="list" href="#list-command" role="tab" aria-controls="list-command">Command</a>
+                    <a class="list-group-item list-group-item-action" id="list-movement-list" data-bs-toggle="list" href="#list-movement" role="tab" aria-controls="list-movement">Movement</a>
+                    <a class="list-group-item list-group-item-action" id="list-psychic-list" data-bs-toggle="list" href="#list-psychic" role="tab" aria-controls="list-psychic">Psychic</a>
+                    <a class="list-group-item list-group-item-action" id="list-shooting-list" data-bs-toggle="list" href="#list-shooting" role="tab" aria-controls="list-shooting">Shooting</a>
+                    <a class="list-group-item list-group-item-action" id="list-charge-list" data-bs-toggle="list" href="#list-charge" role="tab" aria-controls="list-charge">Charge</a>
+                    <a class="list-group-item list-group-item-action" id="list-fight-list" data-bs-toggle="list" href="#list-fight" role="tab" aria-controls="list-fight">Fight</a>
+                    <a class="list-group-item list-group-item-action" id="list-moral-list" data-bs-toggle="list" href="#list-moral" role="tab" aria-controls="list-moral">Moral</a>
+                  </ul>
+            </div>
+            <div class="col-8">
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="list-command" role="tabpanel" aria-labelledby="list-command-list">
+                        <ul class="list-group">
+                            <div class="card list-group-item" data-bs-toggle="collapse" href="#collapse-command-lord-commissar" role="button" aria-expanded="false" aria-controls="collapse-command-lord-commissar">
+                                <div class="card-body">
+                                    Lord Commissar
+                                </div>
+                                <div class="collapse" id="collapse-command-lord-commissar">
+                                    <div class="card card-body">
+                                        <ul class="list-group-flush">
+                                            <li class="list-group-item" id="unit-abilities-1">
+                                                Supreme Commander: Lord Castellan Creed's Voice of Command ability has a range of 12", and he may use this ability three times in each of your turns. Resolve the effects of the first order before issuing the second order, and so on.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="list-movement" role="tabpanel" aria-labelledby="list-movement-list">
+                        <ul class="list-group">
+                            <div class="card list-group-item" data-bs-toggle="collapse" href="#collapse-movement-lord-commissar" role="button" aria-expanded="false" aria-controls="collapse-movement-lord-commissar">
+                                <div class="card-body">
+                                    Lord Commissar
+                                </div>
+                                <div class="collapse" id="collapse-movement-lord-commissar">
+                                    <div class="card card-body">
+                                        <ul class="list-group-flush">
+                                            Movement: 6"
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="list-psychic" role="tabpanel" aria-labelledby="list-psychic-list">...</div>
+                    <div class="tab-pane fade" id="list-shooting" role="tabpanel" aria-labelledby="list-shooting-list">...</div>
+                    <div class="tab-pane fade" id="list-charge" role="tabpanel" aria-labelledby="list-charge-list">...</div>
+                    <div class="tab-pane fade" id="list-fight" role="tabpanel" aria-labelledby="list-fight-list">...</div>
+                    <div class="tab-pane fade" id="list-moral" role="tabpanel" aria-labelledby="list-moral-list">...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
