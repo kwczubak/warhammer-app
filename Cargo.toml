@@ -10,3 +10,4 @@ serde_derive = "*"
 serde = { version="1.0", features=["derive"] }
 regex = "1"
 lazy_static = "1.4.0"
+druid = "0.7.0"
