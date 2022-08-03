@@ -21,9 +21,13 @@ impl Detachment {
         let mut abilities: Vec<Ability> = Vec::new();
         let mut units: Vec<Unit> = Vec::new();
 
+        // Should detachments have abilities? Or should it get passed down to the models?
         for selection in &detachment_force.selections.selections {
             match selection.r#type.as_str() {
-                "upgrade" => abilities.append(&mut parse_abilities(&selection)),
+                "upgrade" => {
+                    
+                }, 
+                //abilities.append(&mut parse_abilities(&selection)),
                 "model" | "unit" => units.push(Unit::from_selection(&selection).unwrap()),
                 _ => {
                     return Err("Unknown selection type for force: ".to_string()
@@ -50,8 +54,11 @@ impl Army {
 
         let mut cp: f32 = 0.0;
         for cost in &roster.costs.costs {
-            if cost.name == "CP" {
-                cp = cost.value;
+            match cost.name.as_str() {
+                "CP" => cp = cost.value,
+                " PL" => (), // Power level
+                "pts" => (), // points
+                _ => (),
             }
         }
 

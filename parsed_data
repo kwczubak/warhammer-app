@@ -1,0 +1,1967 @@
+Ok(
+    Army {
+        detachments: [
+            Detachment {
+                name: "Battalion Detachment 0CP",
+                abilities: [
+                    Ability {
+                        value: "Re-roll hit rolls of 1 in the Shooting phase for units with this doctrine if they did not move in the previous Movement phase. If an INFANTRY unit with this doctrine is issued the ‘Take Aim!’ order and it did not move in the previous Movement phase, re-roll all failed hit rolls for the unit until the end of the phase instead.",
+                        name: "Born Soldiers",
+                    },
+                    Ability {
+                        value: "Use this Stratagem before the battle, when you are mustering your army, if your WARLORD has the CADIAN keyword. Select one CADIAN Detachment from your army, All CADIAN CONSCRIPTS units in that Detachment: \n• Gain the WHITESHIELDS keyword.\n• Have a Leadership characteristic of 6.\n• Lose their Raw Recruits ability.\nIf that Detachment contains two or fewer CONSCRIPTS units, this Stratagem costs ICP; if it contains three to four CONSCRIPTS units, it costs 2CP; if it contains five or more CONSCRIPTS units, it costs 3CP.",
+                        name: "Whiteshields",
+                    },
+                ],
+                units: [
+                    Unit {
+                        name: "Lord Castellan Creed",
+                        keywords: [
+                            "Character",
+                            "Faction: Astra Militarum",
+                            "Faction: Cadian",
+                            "Faction: Imperium",
+                            "HQ",
+                            "Lord Castellan Creed",
+                            "Officer",
+                        ],
+                        abilities: [
+                            Ability {
+                                value: "Roll a dice each time your Warlord issues an order or tank order. On a 4+ that order can affect an additional CADIAN unit of the same type as the original target (INFANTRY or LEMAN RUSS) within 6\" of the Warlord.",
+                                name: "Superior Tactical Training",
+                            },
+                            Ability {
+                                value: "Lord Castellan Creed's Voice of Command ability has a range of 12\", and he may use this ability three times in each of your turns. Resolve the effects of the first order before issuing the second order, and so on.",
+                                name: "Supreme Commander",
+                            },
+                            Ability {
+                                value: "If your army is Battle-forged, you receive an additional 2 Command Points if Lord Castellan Creed is your Warlord.",
+                                name: "Tactical Genius",
+                            },
+                            Ability {
+                                value: "This unit may issue one order per turn to the soldiers under their command at the start of their Shooting phase. Orders may only be issued to INFANTRY units within 6\" of this unit that have the same <REGIMENT> keyword as this unit. To issue an order, pick a target unit and choose which order you wish to issue from the table below. A unit may only be affected by one order per turn.\n\nEach time a <Regiment> unit with the Voice of Command ability issues one of the following orders to a <REGIMENT> INFANTRY unit, that same order can be issued to one or more other friendly <REGIMENT> INFANTRY units (excluding OFFICER units) that are within 6\" of the unit that order was originally issued to: Take Aim!; First Rank, Fire! Second Rank, Fire!; Bring it Down!; Forwards, for the Emperor!; Get Back in the Fight!; Fix Bayonets!",
+                                name: "Voice of Command",
+                            },
+                            Ability {
+                                value: "This model has a 5+ invulnerable save.",
+                                name: "Refractor Field",
+                            },
+                        ],
+                        invulnable_save: None,
+                        models: [
+                            Model {
+                                name: "Lord Castellan Creed",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 6,
+                                        min_movement: 0,
+                                        weapon_skill: 3,
+                                        ballistic_skill: 3,
+                                        strength: 3,
+                                        toughness: 3,
+                                        wounds: 4,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                3,
+                                            ),
+                                        },
+                                        leadership: 9,
+                                        save: 4,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Hot-shot Laspistol",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                6,
+                                            ),
+                                            weapon_type: Pistol,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: -2,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 2,
+                                    },
+                                    Weapon {
+                                        name: "Power sword",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: None,
+                                            weapon_type: Melee,
+                                            attacks: None,
+                                            strength: WeaponStrength {
+                                                value: 1,
+                                                strength_type: Addition,
+                                            },
+                                            armour_penetration: -3,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 1,
+                                keywords: [
+                                    "Warlord",
+                                    "Cadian Warlord",
+                                ],
+                            },
+                        ],
+                        rules: [],
+                        points: 60.0,
+                    },
+                    Unit {
+                        name: "Conscripts",
+                        keywords: [
+                            "Conscript",
+                            "Faction: <REGIMENT>",
+                            "Faction: Astra Militarum",
+                            "Faction: Imperium",
+                            "Infantry",
+                            "Troops",
+                            "Whiteshields",
+                        ],
+                        abilities: [],
+                        invulnable_save: None,
+                        models: [
+                            Model {
+                                name: "Conscript",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 6,
+                                        min_movement: 0,
+                                        weapon_skill: 5,
+                                        ballistic_skill: 5,
+                                        strength: 3,
+                                        toughness: 3,
+                                        wounds: 1,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                1,
+                                            ),
+                                        },
+                                        leadership: 6,
+                                        save: 5,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Lasgun",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                24,
+                                            ),
+                                            weapon_type: RapidFire,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 20,
+                                    },
+                                    Weapon {
+                                        name: "Frag grenades",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                6,
+                                            ),
+                                            weapon_type: Grenade,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 20,
+                                keywords: [],
+                            },
+                        ],
+                        rules: [],
+                        points: 100.0,
+                    },
+                    Unit {
+                        name: "Conscripts",
+                        keywords: [
+                            "Conscript",
+                            "Faction: <REGIMENT>",
+                            "Faction: Astra Militarum",
+                            "Faction: Imperium",
+                            "Infantry",
+                            "Troops",
+                            "Whiteshields",
+                        ],
+                        abilities: [],
+                        invulnable_save: None,
+                        models: [
+                            Model {
+                                name: "Conscript",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 6,
+                                        min_movement: 0,
+                                        weapon_skill: 5,
+                                        ballistic_skill: 5,
+                                        strength: 3,
+                                        toughness: 3,
+                                        wounds: 1,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                1,
+                                            ),
+                                        },
+                                        leadership: 6,
+                                        save: 5,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Lasgun",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                24,
+                                            ),
+                                            weapon_type: RapidFire,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 20,
+                                    },
+                                    Weapon {
+                                        name: "Frag grenades",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                6,
+                                            ),
+                                            weapon_type: Grenade,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 20,
+                                keywords: [],
+                            },
+                        ],
+                        rules: [],
+                        points: 100.0,
+                    },
+                    Unit {
+                        name: "Conscripts",
+                        keywords: [
+                            "Conscript",
+                            "Faction: <REGIMENT>",
+                            "Faction: Astra Militarum",
+                            "Faction: Imperium",
+                            "Infantry",
+                            "Troops",
+                            "Whiteshields",
+                        ],
+                        abilities: [],
+                        invulnable_save: None,
+                        models: [
+                            Model {
+                                name: "Conscript",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 6,
+                                        min_movement: 0,
+                                        weapon_skill: 5,
+                                        ballistic_skill: 5,
+                                        strength: 3,
+                                        toughness: 3,
+                                        wounds: 1,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                1,
+                                            ),
+                                        },
+                                        leadership: 6,
+                                        save: 5,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Lasgun",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                24,
+                                            ),
+                                            weapon_type: RapidFire,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 20,
+                                    },
+                                    Weapon {
+                                        name: "Frag grenades",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                6,
+                                            ),
+                                            weapon_type: Grenade,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 20,
+                                keywords: [],
+                            },
+                        ],
+                        rules: [],
+                        points: 100.0,
+                    },
+                    Unit {
+                        name: "Command Squad",
+                        keywords: [
+                            "Command Squad",
+                            "Elites",
+                            "Faction: <REGIMENT>",
+                            "Faction: Astra Militarum",
+                            "Faction: Imperium",
+                            "Infantry",
+                            "Veterans",
+                        ],
+                        abilities: [
+                            Ability {
+                                value: "All friendly <b><REGIMENT> units add 1 to their Leadership whilst they are within 6\" of any <b><REGIMENT> Veteran with a regimental standard.",
+                                name: "Regimental Standard",
+                            },
+                            Ability {
+                                value: "At the end of any of your Movement phases, a model with a medi-pack can attempt to heal a single model.  Select a friendly ASTRA MILITARUM INFANTRY unit within 3\" and roll a D6.  On a roll of a 4+, one model in the unit recovers a wound it lost earlier in the battle (if the model has a Wounds characteristic of 1, one model slain earlier in the battle is returned to the unit instead).  A unit can only be the target of this ability once in each turn.",
+                                name: "Medi-pack",
+                            },
+                            Ability {
+                                value: "If a friendly OFFICER is within 3\" of a unit with a vox-caster when using their Voice of Command ability, you may extend the range of the order to 18\" if the target unit also contains a vox-caster.",
+                                name: "Vox-caster",
+                            },
+                        ],
+                        invulnable_save: None,
+                        models: [
+                            Model {
+                                name: "Veteran",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 6,
+                                        min_movement: 0,
+                                        weapon_skill: 4,
+                                        ballistic_skill: 3,
+                                        strength: 3,
+                                        toughness: 3,
+                                        wounds: 1,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                1,
+                                            ),
+                                        },
+                                        leadership: 6,
+                                        save: 5,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Frag grenades",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                6,
+                                            ),
+                                            weapon_type: Grenade,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                    Weapon {
+                                        name: "Lasgun",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                24,
+                                            ),
+                                            weapon_type: RapidFire,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 1,
+                                keywords: [],
+                            },
+                            Model {
+                                name: "Veteran w/ Regimental Standard",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 6,
+                                        min_movement: 0,
+                                        weapon_skill: 4,
+                                        ballistic_skill: 3,
+                                        strength: 3,
+                                        toughness: 3,
+                                        wounds: 1,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                1,
+                                            ),
+                                        },
+                                        leadership: 6,
+                                        save: 5,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Frag grenades",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                6,
+                                            ),
+                                            weapon_type: Grenade,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                    Weapon {
+                                        name: "Lasgun",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                24,
+                                            ),
+                                            weapon_type: RapidFire,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 1,
+                                keywords: [],
+                            },
+                            Model {
+                                name: "Veteran w/ Medi-pack",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 6,
+                                        min_movement: 0,
+                                        weapon_skill: 4,
+                                        ballistic_skill: 3,
+                                        strength: 3,
+                                        toughness: 3,
+                                        wounds: 1,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                1,
+                                            ),
+                                        },
+                                        leadership: 6,
+                                        save: 5,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Frag grenades",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                6,
+                                            ),
+                                            weapon_type: Grenade,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                    Weapon {
+                                        name: "Lasgun",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                24,
+                                            ),
+                                            weapon_type: RapidFire,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 1,
+                                keywords: [],
+                            },
+                            Model {
+                                name: "Veteran w/ Vox-caster",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 6,
+                                        min_movement: 0,
+                                        weapon_skill: 4,
+                                        ballistic_skill: 3,
+                                        strength: 3,
+                                        toughness: 3,
+                                        wounds: 1,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                1,
+                                            ),
+                                        },
+                                        leadership: 6,
+                                        save: 5,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Frag grenades",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                6,
+                                            ),
+                                            weapon_type: Grenade,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                    Weapon {
+                                        name: "Lasgun",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                24,
+                                            ),
+                                            weapon_type: RapidFire,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 1,
+                                keywords: [],
+                            },
+                        ],
+                        rules: [],
+                        points: 25.0,
+                    },
+                    Unit {
+                        name: "Lord Commissar",
+                        keywords: [
+                            "Character",
+                            "Commissar",
+                            "Faction: Astra Militarum",
+                            "Faction: Imperium",
+                            "Faction: Officio Prefectus",
+                            "HQ",
+                            "Infantry",
+                            "Lord Commissar",
+                        ],
+                        abilities: [
+                            Ability {
+                                value: "Model with power sword only. The Blade of Conquest replaces the model’s power sword and has the following profile:",
+                                name: "The Blade of Conquest",
+                            },
+                            Ability {
+                                value: "Any friendly ASTRA MILITARUM units within 6\" of a COMMISSAR can use his Leadership instead of their own.",
+                                name: "Aura of Discipline",
+                            },
+                            Ability {
+                                value: "The first time an Astra Militarum unit fails a Morale test during the Morale phase whilst it is within 6\" of any friendly Commissars, you can execute a model. If you do, one model of your choice in that unit is slain and the Morale test is re-rolled (do not include this slain model when re-rolling the Morale test).",
+                                name: "Summary Execution",
+                            },
+                            Ability {
+                                value: "This model has a 5+ invulnerable save.",
+                                name: "Refractor Field",
+                            },
+                        ],
+                        invulnable_save: None,
+                        models: [
+                            Model {
+                                name: "Lord Commissar",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 6,
+                                        min_movement: 0,
+                                        weapon_skill: 2,
+                                        ballistic_skill: 2,
+                                        strength: 3,
+                                        toughness: 3,
+                                        wounds: 4,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                3,
+                                            ),
+                                        },
+                                        leadership: 9,
+                                        save: 4,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Bolt pistol",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                12,
+                                            ),
+                                            weapon_type: Pistol,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 4,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                    Weapon {
+                                        name: "Power sword",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: None,
+                                            weapon_type: Melee,
+                                            attacks: None,
+                                            strength: WeaponStrength {
+                                                value: 1,
+                                                strength_type: Addition,
+                                            },
+                                            armour_penetration: -3,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 1,
+                                keywords: [],
+                            },
+                        ],
+                        rules: [],
+                        points: 35.0,
+                    },
+                    Unit {
+                        name: "Leman Russ Battle Tanks",
+                        keywords: [
+                            "Faction: <REGIMENT>",
+                            "Faction: Astra Militarum",
+                            "Faction: Imperium",
+                            "Heavy Support",
+                            "Leman Russ",
+                            "Leman Russ Battle Tank",
+                            "Vehicle",
+                        ],
+                        abilities: [
+                            Ability {
+                                value: "“In your Shooting phase, when resolving an attack made by this model, if it did not move or moved a distance less than half its Move characteristic in the preceding Movement phase, re-roll a wound roll of 1.",
+                                name: "Slow and Purposeful",
+                            },
+                            Ability {
+                                value: "A vehicle with track guards always counts as having its starting number of Wounds when determining its Move characteristic (i.e., its Move characteristic does not decrease as it suffers wounds).",
+                                name: "Track guards",
+                            },
+                            Ability {
+                                value: "If a vehicle with a dozer blade charges in the Charge phase, add 1 to all hit rolls made for it until the end of the ensuing Fight phase.",
+                                name: "Dozer blade",
+                            },
+                            Ability {
+                                value: "When this model is destroyed, roll one D6 before removing it from play. On a 6+ it explodes, and each unit within 6\" suffers D3 mortal wounds.",
+                                name: "Explodes",
+                            },
+                            Ability {
+                                value: "If this model Remains Stationary or moves under half speed in its Movement phase (i.e. it moves a distance in inches less than half of its current Move characteristic) it\ncan shoot its turret weapon twice in the following Shooting phase (the turret weapon must target the same unit both times). The following weapons are turret weapons: battle cannon; Conqueror battle cannon; demolisher cannon; Eradicator nova cannon; Executioner plasma cannon; Exterminator autocannon; Punisher gatling cannon; Stygies Vanquisher battle cannon; twin lascannon and Vanquisher battle cannon.",
+                                name: "Grinding Advance",
+                            },
+                            Ability {
+                                value: "The first time this unit is set up, all models in this unit must be placed within 6\" of each other.  From that point onwards, each operates independently and is treated as a separate unit for all rules purposes.",
+                                name: "Vehicle Squadron",
+                            },
+                            Ability {
+                                value: "Once per game, instead of shooting any weapons in the Shooting phase, the vehicle can use its Smoke Launchers; until your next Shooting phase your opponent must subtract 1 from all hit rolls for ranged weapons that target this vehicle.",
+                                name: "Smoke Launchers",
+                            },
+                            Ability {
+                                value: "If this model fires a supercharged plasma cannon, and you roll one or more hit rolls of 1, it is not automatically destroyed. Instead, for each hit roll of 1, the bearer suffers 1 mortal wound after all of this weapon's shots have been resolved.",
+                                name: "Emergency Plasma Vents",
+                            },
+                        ],
+                        invulnable_save: None,
+                        models: [
+                            Model {
+                                name: "Leman Russ Punisher",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 10,
+                                        min_movement: 0,
+                                        weapon_skill: 6,
+                                        ballistic_skill: 4,
+                                        strength: 7,
+                                        toughness: 8,
+                                        wounds: 12,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                3,
+                                            ),
+                                        },
+                                        leadership: 7,
+                                        save: 2,
+                                    },
+                                    ModelProfile {
+                                        movement: 7,
+                                        min_movement: 0,
+                                        weapon_skill: 6,
+                                        ballistic_skill: 5,
+                                        strength: 7,
+                                        toughness: 8,
+                                        wounds: 6,
+                                        attacks: ProfileValue {
+                                            dice_value: Some(
+                                                DiceRoll {
+                                                    number: 1,
+                                                    dice_type: D3,
+                                                },
+                                            ),
+                                            flat_value: None,
+                                        },
+                                        leadership: 7,
+                                        save: 2,
+                                    },
+                                    ModelProfile {
+                                        movement: 4,
+                                        min_movement: 0,
+                                        weapon_skill: 6,
+                                        ballistic_skill: 6,
+                                        strength: 7,
+                                        toughness: 8,
+                                        wounds: 3,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                1,
+                                            ),
+                                        },
+                                        leadership: 7,
+                                        save: 2,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Punisher Gatling Cannon",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                24,
+                                            ),
+                                            weapon_type: Heavy,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        20,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 5,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                    Weapon {
+                                        name: "Heavy flamer",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Each time an attack is made with this weapon, that attack automatically hits the target.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                12,
+                                            ),
+                                            weapon_type: Heavy,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 5,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: -1,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 3,
+                                    },
+                                    Weapon {
+                                        name: "Heavy stubber",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                36,
+                                            ),
+                                            weapon_type: Heavy,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        3,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 4,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 1,
+                                keywords: [],
+                            },
+                        ],
+                        rules: [
+                            "Armour of Contempt",
+                        ],
+                        points: 210.0,
+                    },
+                    Unit {
+                        name: "Heavy Weapons Squad",
+                        keywords: [
+                            "Faction: <REGIMENT>",
+                            "Faction: Astra Militarum",
+                            "Faction: Imperium",
+                            "Heavy Support",
+                            "Heavy Weapons Squad",
+                            "Infantry",
+                        ],
+                        abilities: [],
+                        invulnable_save: None,
+                        models: [
+                            Model {
+                                name: "Heavy Weapon Team",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 6,
+                                        min_movement: 0,
+                                        weapon_skill: 4,
+                                        ballistic_skill: 4,
+                                        strength: 3,
+                                        toughness: 3,
+                                        wounds: 2,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                2,
+                                            ),
+                                        },
+                                        leadership: 6,
+                                        save: 5,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Lasgun",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                24,
+                                            ),
+                                            weapon_type: RapidFire,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                    Weapon {
+                                        name: "Mortar",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast. This weapon can target units that are not visible to the firer.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                48,
+                                            ),
+                                            weapon_type: Heavy,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 4,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                    Weapon {
+                                        name: "Frag grenades",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                6,
+                                            ),
+                                            weapon_type: Grenade,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 1,
+                                keywords: [],
+                            },
+                            Model {
+                                name: "Heavy Weapon Team",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 6,
+                                        min_movement: 0,
+                                        weapon_skill: 4,
+                                        ballistic_skill: 4,
+                                        strength: 3,
+                                        toughness: 3,
+                                        wounds: 2,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                2,
+                                            ),
+                                        },
+                                        leadership: 6,
+                                        save: 5,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Lasgun",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                24,
+                                            ),
+                                            weapon_type: RapidFire,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                    Weapon {
+                                        name: "Mortar",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast. This weapon can target units that are not visible to the firer.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                48,
+                                            ),
+                                            weapon_type: Heavy,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 4,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                    Weapon {
+                                        name: "Frag grenades",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                6,
+                                            ),
+                                            weapon_type: Grenade,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 1,
+                                keywords: [],
+                            },
+                            Model {
+                                name: "Heavy Weapon Team",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 6,
+                                        min_movement: 0,
+                                        weapon_skill: 4,
+                                        ballistic_skill: 4,
+                                        strength: 3,
+                                        toughness: 3,
+                                        wounds: 2,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                2,
+                                            ),
+                                        },
+                                        leadership: 6,
+                                        save: 5,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Lasgun",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                24,
+                                            ),
+                                            weapon_type: RapidFire,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                    Weapon {
+                                        name: "Mortar",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast. This weapon can target units that are not visible to the firer.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                48,
+                                            ),
+                                            weapon_type: Heavy,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 4,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                    Weapon {
+                                        name: "Frag grenades",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Blast.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                6,
+                                            ),
+                                            weapon_type: Grenade,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 1,
+                                                            dice_type: D6,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 3,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: 0,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    1,
+                                                ),
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 1,
+                                keywords: [],
+                            },
+                        ],
+                        rules: [],
+                        points: 50.0,
+                    },
+                ],
+            },
+            Detachment {
+                name: "Super-Heavy Auxiliary Detachment -3CP",
+                abilities: [],
+                units: [
+                    Unit {
+                        name: "Armiger Helverins",
+                        keywords: [
+                            "Armiger Helverin",
+                            "Armiger-Class",
+                            "Core",
+                            "Faction: <Noble Household>",
+                            "Faction: <Questor Allegiance>",
+                            "Faction: Imperial Knights",
+                            "Faction: Imperium",
+                            "Faction: Questor Imperialis",
+                            "Lord of War",
+                            "Vehicle",
+                        ],
+                        abilities: [
+                            Ability {
+                                value: "Models in this unit have a 5+ invulnerable save against ranged attacks.",
+                                name: "Ion Shields",
+                            },
+                            Ability {
+                                value: "The first time this unit is set up on the battlefield, if this unit contains more than one model, each model in this unit must be set up within 6\" of at least one other model from this unit. From that point onwards, each model operates independently and is treated as a separate unit.",
+                                name: "Armiger Squadron",
+                            },
+                            Ability {
+                                value: "Models in this unit have a 5+ invulnerable save against ranged attacks.",
+                                name: "Ion Shields",
+                            },
+                            Ability {
+                                value: "The first time this unit is set up on the battlefield, if this unit contains more than one model, each model in this unit must be set up within 6\" of at least one other model from this unit. From that point onwards, each model operates independently and is treated as a separate unit.",
+                                name: "Armiger Squadron",
+                            },
+                        ],
+                        invulnable_save: None,
+                        models: [
+                            Model {
+                                name: "Armiger Helverin",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 8,
+                                        min_movement: 0,
+                                        weapon_skill: 5,
+                                        ballistic_skill: 5,
+                                        strength: 6,
+                                        toughness: 7,
+                                        wounds: 3,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                4,
+                                            ),
+                                        },
+                                        leadership: 8,
+                                        save: 3,
+                                    },
+                                    ModelProfile {
+                                        movement: 12,
+                                        min_movement: 0,
+                                        weapon_skill: 3,
+                                        ballistic_skill: 3,
+                                        strength: 6,
+                                        toughness: 7,
+                                        wounds: 12,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                4,
+                                            ),
+                                        },
+                                        leadership: 8,
+                                        save: 3,
+                                    },
+                                    ModelProfile {
+                                        movement: 10,
+                                        min_movement: 0,
+                                        weapon_skill: 4,
+                                        ballistic_skill: 4,
+                                        strength: 6,
+                                        toughness: 7,
+                                        wounds: 6,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                4,
+                                            ),
+                                        },
+                                        leadership: 8,
+                                        save: 3,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Armiger Autocannon",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                60,
+                                            ),
+                                            weapon_type: Heavy,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 2,
+                                                            dice_type: D3,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 7,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: -2,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    3,
+                                                ),
+                                            },
+                                        },
+                                        number: 2,
+                                    },
+                                    Weapon {
+                                        name: "Meltagun",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Each time an attack made with this weapon targets a unit within half range, that attack has a Damage characteristic of D6+2.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                12,
+                                            ),
+                                            weapon_type: Assault,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 8,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: -4,
+                                            damage: ProfileValue {
+                                                dice_value: Some(
+                                                    DiceRoll {
+                                                        number: 1,
+                                                        dice_type: D6,
+                                                    },
+                                                ),
+                                                flat_value: None,
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 1,
+                                keywords: [],
+                            },
+                            Model {
+                                name: "Armiger Helverin",
+                                profiles: [
+                                    ModelProfile {
+                                        movement: 8,
+                                        min_movement: 0,
+                                        weapon_skill: 5,
+                                        ballistic_skill: 5,
+                                        strength: 6,
+                                        toughness: 7,
+                                        wounds: 3,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                4,
+                                            ),
+                                        },
+                                        leadership: 8,
+                                        save: 3,
+                                    },
+                                    ModelProfile {
+                                        movement: 12,
+                                        min_movement: 0,
+                                        weapon_skill: 3,
+                                        ballistic_skill: 3,
+                                        strength: 6,
+                                        toughness: 7,
+                                        wounds: 12,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                4,
+                                            ),
+                                        },
+                                        leadership: 8,
+                                        save: 3,
+                                    },
+                                    ModelProfile {
+                                        movement: 10,
+                                        min_movement: 0,
+                                        weapon_skill: 4,
+                                        ballistic_skill: 4,
+                                        strength: 6,
+                                        toughness: 7,
+                                        wounds: 6,
+                                        attacks: ProfileValue {
+                                            dice_value: None,
+                                            flat_value: Some(
+                                                4,
+                                            ),
+                                        },
+                                        leadership: 8,
+                                        save: 3,
+                                    },
+                                ],
+                                weapons: [
+                                    Weapon {
+                                        name: "Armiger Autocannon",
+                                        profile: WeaponProfile {
+                                            abilities: None,
+                                            range: Some(
+                                                60,
+                                            ),
+                                            weapon_type: Heavy,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: Some(
+                                                        DiceRoll {
+                                                            number: 2,
+                                                            dice_type: D3,
+                                                        },
+                                                    ),
+                                                    flat_value: None,
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 7,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: -2,
+                                            damage: ProfileValue {
+                                                dice_value: None,
+                                                flat_value: Some(
+                                                    3,
+                                                ),
+                                            },
+                                        },
+                                        number: 2,
+                                    },
+                                    Weapon {
+                                        name: "Meltagun",
+                                        profile: WeaponProfile {
+                                            abilities: Some(
+                                                [
+                                                    Ability {
+                                                        value: "Each time an attack made with this weapon targets a unit within half range, that attack has a Damage characteristic of D6+2.",
+                                                        name: "",
+                                                    },
+                                                ],
+                                            ),
+                                            range: Some(
+                                                12,
+                                            ),
+                                            weapon_type: Assault,
+                                            attacks: Some(
+                                                ProfileValue {
+                                                    dice_value: None,
+                                                    flat_value: Some(
+                                                        1,
+                                                    ),
+                                                },
+                                            ),
+                                            strength: WeaponStrength {
+                                                value: 8,
+                                                strength_type: Flat,
+                                            },
+                                            armour_penetration: -4,
+                                            damage: ProfileValue {
+                                                dice_value: Some(
+                                                    DiceRoll {
+                                                        number: 1,
+                                                        dice_type: D6,
+                                                    },
+                                                ),
+                                                flat_value: None,
+                                            },
+                                        },
+                                        number: 1,
+                                    },
+                                ],
+                                number: 1,
+                                keywords: [],
+                            },
+                        ],
+                        rules: [
+                            "Bondsman Abilities",
+                            "Code Chivalric",
+                            "Objective Secured",
+                            "Unyielding Knight",
+                        ],
+                        points: 320.0,
+                    },
+                ],
+            },
+        ],
+        cp: 2.0,
+    },
+)

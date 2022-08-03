@@ -6,3 +6,7 @@
 - The lord of war has an explosion profile that needs to be added for models
     - It looks like the normal explosion profile every vehicle has, so I dont know why it is here
 - Need to add physic abilities to models.
+
+### Refactor parsing
+- Should change parsing to parse selection and then figure out what the selection is and do the correct thing.
+    - parse_selection -> get categories -> check categories -> parse profile -> etc

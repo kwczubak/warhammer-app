@@ -1,5 +1,5 @@
 
-use super::ros_parser::ros_parser::Selection;
+use super::ros_parser::ros_parser::{Selection, Profile};
 
 /// Profile for what an ability changes
 #[derive(Debug, Clone)]
@@ -7,6 +7,23 @@ pub struct Ability {
     // Need to implement this later to actually change other things
     pub value: String,
     pub name: String,
+}
+
+impl Ability {
+    pub fn from_profile(profile: &Profile) -> Result<Self, String> {
+        if profile.type_name != "Abilities" {
+            return Err("Tried to parse ability with non ability profile".to_string());
+        }
+
+        for characteristic in &profile.characteristics.characteristics {
+            match characteristic.name.as_str() {
+                "Description" => return Ok(Self { value: characteristic.value.as_ref().unwrap().to_string(), name: characteristic.name.to_owned() }),
+                _ => return Err("Unknown characteritic for ability".to_string() + &characteristic.name),
+            };
+        }
+
+        Err("No description for ability".to_string())
+    }
 }
 
 pub fn parse_abilities(selection: &Selection) -> Vec<Ability> {
