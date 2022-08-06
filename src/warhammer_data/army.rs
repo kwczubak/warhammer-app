@@ -14,57 +14,60 @@ pub struct Detachment {
 pub struct Army {
     pub detachments: Vec<Detachment>,
     pub cp: f32,
+    pub pl: f32,
+    pub pts: f32,
+    pub name: String,
 }
 
-impl Detachment {
-    pub fn from_force(detachment_force: &Force) -> Result<Self, String> {
-        let mut abilities: Vec<Ability> = Vec::new();
-        let mut units: Vec<Unit> = Vec::new();
+// impl Detachment {
+//     pub fn from_force(detachment_force: &Force) -> Result<Self, String> {
+//         let mut abilities: Vec<Ability> = Vec::new();
+//         let mut units: Vec<Unit> = Vec::new();
 
-        // Should detachments have abilities? Or should it get passed down to the models?
-        for selection in &detachment_force.selections.selections {
-            match selection.r#type.as_str() {
-                "upgrade" => {
+//         // Should detachments have abilities? Or should it get passed down to the models?
+//         for selection in &detachment_force.selections.selections {
+//             match selection.r#type.as_str() {
+//                 "upgrade" => {
                     
-                }, 
-                //abilities.append(&mut parse_abilities(&selection)),
-                "model" | "unit" => units.push(Unit::from_selection(&selection).unwrap()),
-                _ => {
-                    return Err("Unknown selection type for force: ".to_string()
-                        + selection.r#type.as_str())
-                }
-            };
-        }
+//                 }, 
+//                 //abilities.append(&mut parse_abilities(&selection)),
+//                 "model" | "unit" => units.push(Unit::from_selection(&selection).unwrap()),
+//                 _ => {
+//                     return Err("Unknown selection type for force: ".to_string()
+//                         + selection.r#type.as_str())
+//                 }
+//             };
+//         }
 
-        Ok(Self {
-            name: detachment_force.name.to_owned(),
-            abilities,
-            units,
-        })
-    }
-}
+//         Ok(Self {
+//             name: detachment_force.name.to_owned(),
+//             abilities,
+//             units,
+//         })
+//     }
+// }
 
-impl Army {
-    pub fn from_roster(roster: &Roster) -> Result<Self, String> {
-        let mut detachments: Vec<Detachment> = Vec::new();
+// impl Army {
+//     pub fn from_roster(roster: &Roster) -> Result<Self, String> {
+//         let mut detachments: Vec<Detachment> = Vec::new();
         
-        for force in &roster.forces.forces {
-            detachments.push(Detachment::from_force(force).unwrap());
-        }
+//         for force in &roster.forces.forces {
+//             detachments.push(Detachment::from_force(force).unwrap());
+//         }
 
-        let mut cp: f32 = 0.0;
-        for cost in &roster.costs.costs {
-            match cost.name.as_str() {
-                "CP" => cp = cost.value,
-                " PL" => (), // Power level
-                "pts" => (), // points
-                _ => (),
-            }
-        }
+//         let mut cp: f32 = 0.0;
+//         for cost in &roster.costs.costs {
+//             match cost.name.as_str() {
+//                 "CP" => cp = cost.value,
+//                 " PL" => (), // Power level
+//                 "pts" => (), // points
+//                 _ => (),
+//             }
+//         }
 
-        Ok(Self {
-            detachments,
-            cp
-        })
-    }
-}
+//         Ok(Self {
+//             detachments,
+//             cp
+//         })
+//     }
+// }
