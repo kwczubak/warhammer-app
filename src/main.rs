@@ -22,19 +22,24 @@ fn ui_builder() -> impl Widget<u32> {
 }
 
 fn main() -> Result<(), PlatformError> {
-    // let file = File::open("Astra_1000/Astra_1000.ros")?;
-    // let buf = BufReader::new(file);
+    let file = File::open("Astra_1000/Astra_1000.ros");
+    let buf = BufReader::new(file.unwrap());
 
-    // let roster: Roster = from_reader(buf).unwrap();
-    // let army = warhammer_data::army::Army::from_roster(
-    //     &roster
-    // );
+    // let file = File::open("Harlequin 1000/Harlequin 1000.ros");
+    // let buf = BufReader::new(file.unwrap());
 
-    let main_window = WindowDesc::new(ui_builder);
-    let data = 0_u32;
-    AppLauncher::with_window(main_window)
-        .use_simple_logger()
-        .launch(data)?;
+    let roster: Roster = from_reader(buf).unwrap();
+    // println!("{:#?}", roster);
+
+    let army = warhammer_data::ros_to_warhammer::army_from_roster(&roster);
+
+    println!("{:#?}", army);
+
+    // let main_window = WindowDesc::new(ui_builder);
+    // let data = 0_u32;
+    // AppLauncher::with_window(main_window)
+    //     .use_simple_logger()
+    //     .launch(data)?;
 
     Ok(())
 }

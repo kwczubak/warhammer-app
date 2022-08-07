@@ -133,35 +133,53 @@ impl WeaponProfile {
                 // Parse Strength
                 // For melee, this is added to model strength and can be added(+) or multiplied(x)
                 "S" => {
-                    weapon.strength = {
-                        match STRENGTH_RE.captures(characteristic.value.as_ref().unwrap()) {
-                            Some(captures) => WeaponStrength {
-                                value: captures.get(2).unwrap().as_str().parse().unwrap(),
-                                strength_type: match captures.get(1).unwrap().as_str() {
-                                    "+" => WeaponStrengthType::Addition,
-                                    "x" => WeaponStrengthType::Multiply,
-                                    _ => {
-                                        return Err(
-                                            "Unknown specifier for weapon strength".to_string()
-                                        )
-                                    }
+                    if characteristic.value.as_ref().unwrap().eq("*") {
+                        weapon.strength = WeaponStrength {
+                            value: 0,
+                            strength_type: WeaponStrengthType::Flat,
+                        }
+                    } else {
+                        weapon.strength = {
+                            match STRENGTH_RE.captures(characteristic.value.as_ref().unwrap()) {
+                                Some(captures) => WeaponStrength {
+                                    value: captures.get(2).unwrap().as_str().parse().unwrap(),
+                                    strength_type: match captures.get(1).unwrap().as_str() {
+                                        "+" => WeaponStrengthType::Addition,
+                                        "x" => WeaponStrengthType::Multiply,
+                                        _ => {
+                                            return Err(
+                                                "Unknown specifier for weapon strength".to_string()
+                                            )
+                                        }
+                                    },
                                 },
-                            },
-                            None => WeaponStrength {
-                                value: characteristic.value.as_ref().unwrap().parse().unwrap(),
-                                strength_type: WeaponStrengthType::Flat,
-                            },
+                                None => WeaponStrength {
+                                    value: characteristic.value.as_ref().unwrap().parse().unwrap(),
+                                    strength_type: WeaponStrengthType::Flat,
+                                },
+                            }
                         }
                     }
                 }
                 // Parse armour pen
                 "AP" => {
-                    weapon.armour_penetration =
+                    if characteristic.value.as_ref().unwrap().eq("*") {
+                        weapon.armour_penetration = 0
+                    } else {   
+                        weapon.armour_penetration =
                         characteristic.value.as_ref().unwrap().parse().unwrap()
+                    }
                 }
                 // Parse damage which can be a dice value
                 "D" => {
-                    weapon.damage = ProfileValue::from_str(characteristic.value.as_ref().unwrap())
+                    if characteristic.value.as_ref().unwrap().eq("*") {
+                        weapon.damage = ProfileValue {
+                            dice_value: None,
+                            flat_value: Some(0),
+                        }
+                    } else {
+                        weapon.damage = ProfileValue::from_str(characteristic.value.as_ref().unwrap())
+                    }
                 }
                 // Parse ability.
                 "Abilities" => {

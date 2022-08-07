@@ -3,6 +3,7 @@ use regex::Regex;
 
 use super::ability::{parse_abilities, Ability};
 use super::profile::ProfileValue;
+use super::psyker::{PsykerProfile, PsychicPower};
 use super::ros_parser::ros_parser::{Profile, Selection};
 use super::weapon::{Weapon};
 
@@ -29,17 +30,17 @@ pub struct Model {
     pub weapons: Vec<Weapon>,
     pub number: u8,
     pub keywords: Vec<String>,
+    pub psyker_profile: Option<PsykerProfile>,
+    pub psyker_powers: Option<Vec<PsychicPower>>,
+    pub abilities: Option<Vec<Ability>>,
+    pub invulnable_save: Option<u8>,
 }
 
 /// Unit information from a unit's datasheet. Includes models.
 #[derive(Debug)]
 pub struct Unit {
     pub name: String,
-    pub keywords: Vec<String>,
-    pub abilities: Vec<Ability>,
-    pub invulnable_save: Option<u8>,
     pub models: Vec<Model>,
-    pub rules: Vec<String>,
     pub points: f32,
 }
 
@@ -222,142 +223,142 @@ impl Model {
         self.weapons.push(weapon.clone());
     }
 
-    pub fn from_selection(model_selection: &Selection) -> Result<Model, String> {
-        let mut weapons: Vec<Weapon> = Vec::new();
-        let mut model_profiles: Vec<ModelProfile> = Vec::new();
-        let mut keywords: Vec<String> = Vec::new();
+    // pub fn from_selection(model_selection: &Selection) -> Result<Model, String> {
+    //     let mut weapons: Vec<Weapon> = Vec::new();
+    //     let mut model_profiles: Vec<ModelProfile> = Vec::new();
+    //     let mut keywords: Vec<String> = Vec::new();
 
-        match &model_selection.profiles {
-            Some(profiles) => {
-                for profile in &profiles.profiles {
-                    match profile.type_name.as_str() {
-                        // This unwrap is safe because will return profile or Err
-                        "Unit" => {
-                            model_profiles.push(ModelProfile::from_profile(&profile).unwrap())
-                        }
-                        "Abilities" => (),
-                        "Explosion" => (), //TODO: whatever to do with this
-                        _ => {
-                            return Err("Unknown type name for profile: ".to_owned()
-                                + profile.type_name.as_str())
-                        }
-                    }
-                }
-            }
-            // No model profile?
-            None => return Err("Model does not have a profile".to_owned()),
-        };
+    //     match &model_selection.profiles {
+    //         Some(profiles) => {
+    //             for profile in &profiles.profiles {
+    //                 match profile.type_name.as_str() {
+    //                     // This unwrap is safe because will return profile or Err
+    //                     "Unit" => {
+    //                         model_profiles.push(ModelProfile::from_profile(&profile).unwrap())
+    //                     }
+    //                     "Abilities" => (),
+    //                     "Explosion" => (), //TODO: whatever to do with this
+    //                     _ => {
+    //                         return Err("Unknown type name for profile: ".to_owned()
+    //                             + profile.type_name.as_str())
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         // No model profile?
+    //         None => return Err("Model does not have a profile".to_owned()),
+    //     };
 
-        for selection in &model_selection.selections.as_ref().unwrap().selections {
-            // This covers cases where the weapons are in another selection.
-            if !selection.selections.is_none() {
-                for s in &selection.selections.as_ref().unwrap().selections {
-                    match s.profiles.as_ref().unwrap().profiles.get(0) {
-                        Some(profile) => match profile.type_name.as_str() {
-                            "Abilities" => (),
-                            "Weapon" => weapons.push(Weapon::from_selection(&s).unwrap()),
-                            _ => {
-                                return Err(
-                                    "Unknown profile type in selection selection.".to_owned()
-                                )
-                            }
-                        },
-                        None => return Err("Selection did not have a profile".to_owned()),
-                    }
-                }
-            }
+    //     for selection in &model_selection.selections.as_ref().unwrap().selections {
+    //         // This covers cases where the weapons are in another selection.
+    //         if !selection.selections.is_none() {
+    //             for s in &selection.selections.as_ref().unwrap().selections {
+    //                 match s.profiles.as_ref().unwrap().profiles.get(0) {
+    //                     Some(profile) => match profile.type_name.as_str() {
+    //                         "Abilities" => (),
+    //                         "Weapon" => weapons.push(Weapon::from_selection(&s).unwrap()),
+    //                         _ => {
+    //                             return Err(
+    //                                 "Unknown profile type in selection selection.".to_owned()
+    //                             )
+    //                         }
+    //                     },
+    //                     None => return Err("Selection did not have a profile".to_owned()),
+    //                 }
+    //             }
+    //         }
 
-            // This covers keywords (i.e. Warlord) and makes sure not the throw errors below
-            // Should these keywords get bubbled up to unit?
-            if selection.profiles.is_none() {
-                match &selection.categories {
-                    Some(categories) => {
-                        for category in &categories.categories {
-                            keywords.push(category.name.clone());
-                        }
-                    },
-                    None => ()
-                }
-                continue;
-            }
+    //         // This covers keywords (i.e. Warlord) and makes sure not the throw errors below
+    //         // Should these keywords get bubbled up to unit?
+    //         if selection.profiles.is_none() {
+    //             match &selection.categories {
+    //                 Some(categories) => {
+    //                     for category in &categories.categories {
+    //                         keywords.push(category.name.clone());
+    //                     }
+    //                 },
+    //                 None => ()
+    //             }
+    //             continue;
+    //         }
 
-            match selection.profiles.as_ref().unwrap().profiles.get(0) {
-                Some(profile) => {
-                    match profile.type_name.as_str() {
-                        "Abilities" => (),
-                        // Push weapon
-                        "Weapon" => weapons.push(Weapon::from_selection(&selection).unwrap()),
-                        // There are probably more of this type
-                        "Stat Damage - M/BS/A" => {
-                            let orig_profile = model_profiles.pop().unwrap();
-                            for profile in &selection.profiles.as_ref().unwrap().profiles {
-                                let tmp_profile = ModelProfile::from_profile(&profile).unwrap();
-                                model_profiles.push(ModelProfile {
-                                    movement: orig_profile.movement + tmp_profile.movement,
-                                    min_movement: orig_profile.min_movement
-                                        + tmp_profile.min_movement,
-                                    weapon_skill: orig_profile.weapon_skill
-                                        + tmp_profile.weapon_skill,
-                                    ballistic_skill: orig_profile.ballistic_skill
-                                        + tmp_profile.ballistic_skill,
-                                    strength: orig_profile.strength,
-                                    toughness: orig_profile.toughness,
-                                    wounds: tmp_profile.wounds,
-                                    attacks: {
-                                        // We can assume that if both dice damage and flat damage are None, then the attacks come from tmp
-                                        // Also since this block is for stat damage: M/BS/A but still good to have check
-                                        if orig_profile.attacks.dice_value.is_none()
-                                            && orig_profile.attacks.flat_value.is_none()
-                                        {
-                                            tmp_profile.attacks
-                                        } else {
-                                            orig_profile.attacks
-                                        }
-                                    },
-                                    leadership: orig_profile.leadership,
-                                    save: orig_profile.save,
-                                })
-                            }
-                        }
-                        _ => return Err("Unknown profile type in selection.".to_owned()),
-                    }
-                }
-                None => return Err("Selection did not have a profile".to_owned()),
-            }
-        }
+    //         match selection.profiles.as_ref().unwrap().profiles.get(0) {
+    //             Some(profile) => {
+    //                 match profile.type_name.as_str() {
+    //                     "Abilities" => (),
+    //                     // Push weapon
+    //                     "Weapon" => weapons.push(Weapon::from_selection(&selection).unwrap()),
+    //                     // There are probably more of this type
+    //                     "Stat Damage - M/BS/A" => {
+    //                         let orig_profile = model_profiles.pop().unwrap();
+    //                         for profile in &selection.profiles.as_ref().unwrap().profiles {
+    //                             let tmp_profile = ModelProfile::from_profile(&profile).unwrap();
+    //                             model_profiles.push(ModelProfile {
+    //                                 movement: orig_profile.movement + tmp_profile.movement,
+    //                                 min_movement: orig_profile.min_movement
+    //                                     + tmp_profile.min_movement,
+    //                                 weapon_skill: orig_profile.weapon_skill
+    //                                     + tmp_profile.weapon_skill,
+    //                                 ballistic_skill: orig_profile.ballistic_skill
+    //                                     + tmp_profile.ballistic_skill,
+    //                                 strength: orig_profile.strength,
+    //                                 toughness: orig_profile.toughness,
+    //                                 wounds: tmp_profile.wounds,
+    //                                 attacks: {
+    //                                     // We can assume that if both dice damage and flat damage are None, then the attacks come from tmp
+    //                                     // Also since this block is for stat damage: M/BS/A but still good to have check
+    //                                     if orig_profile.attacks.dice_value.is_none()
+    //                                         && orig_profile.attacks.flat_value.is_none()
+    //                                     {
+    //                                         tmp_profile.attacks
+    //                                     } else {
+    //                                         orig_profile.attacks
+    //                                     }
+    //                                 },
+    //                                 leadership: orig_profile.leadership,
+    //                                 save: orig_profile.save,
+    //                             })
+    //                         }
+    //                     }
+    //                     _ => return Err("Unknown profile type in selection.".to_owned()),
+    //                 }
+    //             }
+    //             None => return Err("Selection did not have a profile".to_owned()),
+    //         }
+    //     }
 
-        // Go through weapons and check if there are multiple enries of the same weapon
-        let mut unmultiple_weapons: Vec<Weapon> = Vec::new();
-        'outer: for i in 0..weapons.len() {
-            for k in &unmultiple_weapons {
-                if weapons[i].name == k.name {
-                    continue 'outer;
-                }
-            }
+    //     // Go through weapons and check if there are multiple enries of the same weapon
+    //     let mut unmultiple_weapons: Vec<Weapon> = Vec::new();
+    //     'outer: for i in 0..weapons.len() {
+    //         for k in &unmultiple_weapons {
+    //             if weapons[i].name == k.name {
+    //                 continue 'outer;
+    //             }
+    //         }
 
-            let mut temp = weapons[i].clone();
+    //         let mut temp = weapons[i].clone();
 
-            for j in i + 1..weapons.len() {
-                if weapons.get(i).unwrap().name == weapons.get(j).unwrap().name {
-                    temp.number = temp.number + weapons[j].number;
-                }
-            }
-            unmultiple_weapons.push(temp);
-        }
+    //         for j in i + 1..weapons.len() {
+    //             if weapons.get(i).unwrap().name == weapons.get(j).unwrap().name {
+    //                 temp.number = temp.number + weapons[j].number;
+    //             }
+    //         }
+    //         unmultiple_weapons.push(temp);
+    //     }
 
-        // Create and return model
-        Ok(Self {
-            name: model_selection.name.to_owned(),
-            profiles: model_profiles,
-            weapons: unmultiple_weapons,
-            number: model_selection.number,
-            keywords,
-        })
-    }
+    //     // Create and return model
+    //     Ok(Self {
+    //         name: model_selection.name.to_owned(),
+    //         profiles: model_profiles,
+    //         weapons: unmultiple_weapons,
+    //         number: model_selection.number,
+    //         keywords,
+    //     })
+    // }
 }
 
 impl Unit {
-    fn get_total_points(unit_selection: &Selection) -> f32 {
+    pub fn get_total_points(unit_selection: &Selection) -> f32 {
         let mut points: f32 = 0.0;
 
         match &unit_selection.selections {
@@ -384,93 +385,93 @@ impl Unit {
         points
     }
 
-    pub fn from_selection(unit_selection: &Selection) -> Result<Self, String> {
-        let mut keywords: Vec<String> = Vec::new();
-        let mut rules: Vec<String> = Vec::new();
-        let mut unit_weapons: Vec<Weapon> = Vec::new();
-        let mut models: Vec<Model> = Vec::new();
+    // pub fn from_selection(unit_selection: &Selection) -> Result<Self, String> {
+    //     let mut keywords: Vec<String> = Vec::new();
+    //     let mut rules: Vec<String> = Vec::new();
+    //     let mut unit_weapons: Vec<Weapon> = Vec::new();
+    //     let mut models: Vec<Model> = Vec::new();
 
-        // Some units have weapons in the unit 
-        match &unit_selection.profiles {
-            Some(profiles) => {
-                for profile in &profiles.profiles {
-                    match profile.type_name.as_str() {
-                        "Weapon" => {
-                            unit_weapons.push(Weapon::from_profile(&profile).unwrap());
-                        },
-                        "Unit" => (),
-                        "Abilities" => (),
-                        _ => return Err("Unknown unit profile type: ".to_string() + &profile.type_name)
-                    }
-                }
-            },
-            None => (),
-        }
+    //     // Some units have weapons in the unit 
+    //     match &unit_selection.profiles {
+    //         Some(profiles) => {
+    //             for profile in &profiles.profiles {
+    //                 match profile.type_name.as_str() {
+    //                     "Weapon" => {
+    //                         unit_weapons.push(Weapon::from_profile(&profile).unwrap());
+    //                     },
+    //                     "Unit" => (),
+    //                     "Abilities" => (),
+    //                     _ => return Err("Unknown unit profile type: ".to_string() + &profile.type_name)
+    //                 }
+    //             }
+    //         },
+    //         None => (),
+    //     }
 
-        // Parse on the selection type
-        match unit_selection.r#type.as_str() {
-            // Selection is the model which has selections of only weapons and abilities
-            "model" => models.push(Model::from_selection(unit_selection).unwrap()),
-            // Selection is the unit which has selections of models
-            "unit" => {
-                for model in &unit_selection.selections.as_ref().unwrap().selections {
-                    match model.profiles {
-                        // Push model into unit
-                        Some(_) => {
-                            let mut m = Model::from_selection(&model).unwrap();
-                            for weapon in &unit_weapons {
-                                m.append_weapon(weapon);
-                            }
-                            models.push(m);
+    //     // Parse on the selection type
+    //     match unit_selection.r#type.as_str() {
+    //         // Selection is the model which has selections of only weapons and abilities
+    //         "model" => models.push(Model::from_selection(unit_selection).unwrap()),
+    //         // Selection is the unit which has selections of models
+    //         "unit" => {
+    //             for model in &unit_selection.selections.as_ref().unwrap().selections {
+    //                 match model.profiles {
+    //                     // Push model into unit
+    //                     Some(_) => {
+    //                         let mut m = Model::from_selection(&model).unwrap();
+    //                         for weapon in &unit_weapons {
+    //                             m.append_weapon(weapon);
+    //                         }
+    //                         models.push(m);
 
-                        },
-                        None => (),
-                    }
-                    // Get more keywords from the selections
-                    match &model.categories {
-                        Some(categories) => {
-                            for category in &categories.categories {
-                                keywords.push(category.name.to_owned());
-                            }
-                        }
-                        None => (),
-                    }
-                    // Get rules from models
-                    match &model.rules {
-                        Some(r) => {
-                            for rule in &r.categories {
-                                rules.push(rule.name.to_owned());
-                            }
-                        }
-                        None => (),
-                    }
-                }
-            }
-            _ => {
-                return Err(
-                    "Unknown type name for unit: ".to_owned() + unit_selection.r#type.as_str()
-                )
-            }
-        };
+    //                     },
+    //                     None => (),
+    //                 }
+    //                 // Get more keywords from the selections
+    //                 match &model.categories {
+    //                     Some(categories) => {
+    //                         for category in &categories.categories {
+    //                             keywords.push(category.name.to_owned());
+    //                         }
+    //                     }
+    //                     None => (),
+    //                 }
+    //                 // Get rules from models
+    //                 match &model.rules {
+    //                     Some(r) => {
+    //                         for rule in &r.categories {
+    //                             rules.push(rule.name.to_owned());
+    //                         }
+    //                     }
+    //                     None => (),
+    //                 }
+    //             }
+    //         }
+    //         _ => {
+    //             return Err(
+    //                 "Unknown type name for unit: ".to_owned() + unit_selection.r#type.as_str()
+    //             )
+    //         }
+    //     };
 
-        for category in &unit_selection.categories.as_ref().unwrap().categories {
-            keywords.push(category.name.to_owned())
-        }
+    //     for category in &unit_selection.categories.as_ref().unwrap().categories {
+    //         keywords.push(category.name.to_owned())
+    //     }
 
-        keywords.sort_unstable();
-        keywords.dedup();
+    //     keywords.sort_unstable();
+    //     keywords.dedup();
 
-        rules.sort_unstable();
-        rules.dedup();
+    //     rules.sort_unstable();
+    //     rules.dedup();
 
-        Ok(Unit {
-            name: unit_selection.name.to_owned(),
-            abilities: parse_abilities(unit_selection),
-            keywords,
-            invulnable_save: None,
-            models,
-            rules,
-            points: Self::get_total_points(unit_selection),
-        })
-    }
+    //     Ok(Unit {
+    //         name: unit_selection.name.to_owned(),
+    //         abilities: parse_abilities(unit_selection),
+    //         keywords,
+    //         invulnable_save: None,
+    //         models,
+    //         rules,
+    //         points: Self::get_total_points(unit_selection),
+    //     })
+    // }
 }
